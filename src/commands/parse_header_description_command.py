@@ -11,7 +11,6 @@ class ParseHeaderDescriptionsCommand(Command):
             html_content = file.read()
 
         soup = BeautifulSoup(html_content, 'html.parser')
-
         tables = soup.find_all('table', {'class': 'table'})
 
         variables_data_correct = {}
@@ -30,17 +29,14 @@ class ParseHeaderDescriptionsCommand(Command):
             question = details[-1].split(':')[1].strip() if 'Question:' in details[-1] else None
             variable_name = details[6].split(':')[1].strip() if 'SAS\xa0Variable\xa0Name:' in details[6] else None
 
-            possible_answers = []
+            possible_answers = {}
             for data_row in rows[2:]:  # Skipping header rows
                 cells = data_row.find_all('td')
                 if len(cells) < 2:
                     continue
                 value = cells[0].text.strip()
                 description = cells[1].text.strip()
-                possible_answers.append({
-                    "description": description,
-                    "value": value
-                })
+                possible_answers[value] = description
 
             if variable_name:
                 variables_data_correct[variable_name] = {

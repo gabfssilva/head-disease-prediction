@@ -5,7 +5,7 @@ from src.commands.merge_dataset_header_command import MergeDatasetHeaderCommand
 from src.commands.parse_header_description_command import ParseHeaderDescriptionsCommand
 from src.commands.parse_header_positions_command import ParseHeaderPositionsCommand
 from src.commands.unzip_raw_asc_file_command import UnzipRawASCFileCommand
-from src.commands.write_dataset_as_json_zip_command import WriteDatasetAsJsonZipCommand
+from src.commands.write_dataset_as_parquet_command import WriteDatasetAsParquetCommand
 from src.commands.write_headers_json_command import WriteHeadersJsonCommand
 
 commands = [
@@ -15,7 +15,8 @@ commands = [
     MergeDatasetHeaderCommand(),
     WriteHeadersJsonCommand(),
     LoadRawDatasetCommand(),
-    WriteDatasetAsJsonZipCommand()
+    WriteDatasetAsParquetCommand(),
+    # WriteDatasetAsJsonZipCommand()
 ]
 
 if __name__ == '__main__':

@@ -13,25 +13,18 @@ class ParseHeaderPositionsCommand(Command):
 
         data_dict = {}
 
-        last_name = None
-
         for row in rows:
             cols = row.find_all('td')
-            if len(cols) > 1:
-                col_index = int(cols[0].text.strip())
-                col_name = cols[1].text.strip()
 
-                if col_name not in data_dict:
-                    data_dict[col_name] = {'from': col_index}
+            if len(cols) <= 1:
+                continue
 
-                if last_name and last_name != col_name:
-                    data_dict[last_name]['to'] = col_index - 1
+            from_column = int(cols[0].text.strip())
+            column_name = cols[1].text.strip()
+            column_size = cols[2].text.strip()
+            to_column = (int(from_column) + int(column_size))
 
-                last_name = col_name
-
-        with open('../resources/generated/dataset/LLCP2022.ASC ', 'r') as file:
-            content = file.read()
-            data_dict[last_name]['to'] = len(content.splitlines().pop())
+            data_dict[column_name] = {'from': from_column, 'to': to_column}
 
         context['header_positions'] = data_dict
         return True
