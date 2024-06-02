@@ -1,11 +1,10 @@
-from src.commands.command import Command
+from typing import Callable
 
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-
-class WriteDatasetAsParquetCommand(Command):
-    def handle(self, context: dict) -> bool:
+def write_dataset_as_parquet(filepath: str) -> Callable[[dict], bool]:
+    def with_context(context) -> bool:
         table = pa.Table.from_pandas(context['raw_dataset'])
         headers = context['headers']
 
@@ -25,6 +24,8 @@ class WriteDatasetAsParquetCommand(Command):
 
         new_schema = pa.schema(fields)
         new_table = pa.Table.from_arrays(arrays=table.columns, schema=new_schema)
-        pq.write_table(new_table, '../resources/generated/raw_dataset.parquet')
+        pq.write_table(new_table, filepath)
 
         return True
+
+    return with_context

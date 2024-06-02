@@ -1,11 +1,8 @@
 import json
 
-from src.commands.command import Command
 
+def write_headers_json(context: dict) -> bool:
+    with open('../resources/generated/headers.json', 'w') as file:
+        json.dump(context['headers'], file)
 
-class WriteHeadersJsonCommand(Command):
-    def handle(self, context: dict) -> bool:
-        with open('../resources/generated/headers.json', 'w') as file:
-            json.dump(context['headers'], file)
-
-        return True
+    return True
