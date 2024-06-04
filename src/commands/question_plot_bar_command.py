@@ -1,21 +1,23 @@
+import os
 from typing import Callable
 
-from src.commands.command import Command
-
-import plotly.io as pio
+import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 
 
-def question_plot_bar(feature: str) -> Callable[[dict], bool]:
-    pio.renderers.default = ''
-
+def question_plot_bar(
+    feature: str,
+    normalize_name: Callable[[str], str] = lambda x: x
+) -> Callable[[dict], bool]:
     def question_plot_bar_f(context: dict) -> bool:
         headers_df = context['headers']
         dataset = context['analysis_dataframe']
 
         def possible_answers(question_key: str) -> dict:
             return {
-                int(k): v for k, v in headers_df[question_key]['possible_answers'].items() if k.isdigit()
+                int(k): normalize_name(v) for k, v in headers_df[question_key]['possible_answers'].items() if
+                k.isdigit()
             }
 
         def count_of(question_key: str):
@@ -36,7 +38,13 @@ def question_plot_bar(feature: str) -> Callable[[dict], bool]:
                 height=600,
             )
 
-            fig.show()
+            os.makedirs('../resources/generated/images', exist_ok=True)
+            fig.write_image(
+                f'../resources/generated/images/{feature}.png',
+                scale=4
+            )
+
+            return True
 
         return plot_bar_of_count(feature)
 

@@ -3,9 +3,9 @@ from typing import Callable
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-def write_dataset_as_parquet(filepath: str) -> Callable[[dict], bool]:
+def write_dataset_as_parquet(filepath: str, dataset: str = 'raw_dataset') -> Callable[[dict], bool]:
     def with_context(context) -> bool:
-        table = pa.Table.from_pandas(context['raw_dataset'])
+        table = pa.Table.from_pandas(context[dataset])
         headers = context['headers']
 
         fields = []

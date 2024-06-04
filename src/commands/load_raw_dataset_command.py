@@ -12,3 +12,9 @@ def load_raw_dataset(context: dict) -> bool:
     )
 
     return True
+
+
+def load_raw_dataset_parquet(context: dict) -> bool:
+    context['raw_dataset'] = pd.read_parquet('../resources/generated/raw_dataset.parquet')
+
+    return True

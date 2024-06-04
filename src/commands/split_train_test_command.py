@@ -7,10 +7,9 @@ def split_train_test(context: dict) -> bool:
     X = dataset.drop('CVDINFR4', axis=1)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y,
-                                                        test_size=0.1,
+                                                        test_size=0.2,
                                                         stratify=y,
-                                                        random_state=42
-                                                        )
+                                                        random_state=42)
 
     context['X_train'] = X_train
     context['X_test'] = X_test
