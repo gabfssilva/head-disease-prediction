@@ -1,12 +1,10 @@
 import pandas as pd
 
-dataset: pd.DataFrame = (
-    pd.read_parquet('../resources/generated/raw_dataset.parquet'))
+df = pd.read_parquet('../resources/processed/train.parquet')
+df_test = pd.read_parquet('../resources/processed/test.parquet')
 
-# CVDSTRK3 = Have yoy ever had a stroke?
-print(dataset['CVDSTRK3'].value_counts())
+y_train = df['target']
+X_train = df.drop(['CVDINFR4', 'target'], axis=1)
 
-print('-' * 50)
-
-# CVDCRHD4 = Have you ever been diagnosed with angina or coronary heart disease?
-print(dataset['CVDCRHD4'].value_counts())
+y_test = df_test['target']
+X_test = df_test.drop(['CVDINFR4', 'target'], axis=1)

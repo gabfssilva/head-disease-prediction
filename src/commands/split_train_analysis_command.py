@@ -11,9 +11,7 @@ def split_train_analysis(context: dict) -> bool:
                                                     stratify=y_train,
                                                     random_state=42)
 
-    y_analysis_df = pd.DataFrame(y_analysis, columns=['CVDINFR4'])
-    analysis_dataframe = pd.concat([X_analysis, y_analysis_df], axis=1)
-    feature_names = X_analysis.columns.tolist() + ['CVDINFR4']
-    context['analysis_dataframe'] = analysis_dataframe[feature_names]
+    context['X_analysis'] = X_analysis
+    context['y_analysis'] = y_analysis
 
     return True

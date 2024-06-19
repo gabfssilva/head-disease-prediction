@@ -7,7 +7,8 @@ from src.types.types import TransformerStep, Step
 
 
 def pipeline_builder(
-    preprocessing_transformers: list[TransformerStep],
+    preprocessing: list[Step],
+    transformers: list[TransformerStep],
     steps: list[Step],
     param_grid: dict,
     positive_class: any
@@ -21,7 +22,7 @@ def pipeline_builder(
     using cross-validation.
 
     Parameters:
-    - preprocessing_transformers (list[TransformerStep]): A list of tuples, where each tuple contains
+    - transformers (list[TransformerStep]): A list of tuples, where each tuple contains
       a transformer and its associated metadata. These are used to preprocess the data.
     - steps (list[Step]): A list of estimators or transformers that define the steps of the pipeline
       after preprocessing.
@@ -76,11 +77,12 @@ def pipeline_builder(
     )
 
     preprocessor = ColumnTransformer(
-        transformers=list(map(lambda x: (x[1].name, x[0], x[1].value), preprocessing_transformers))
+        transformers=list(map(lambda x: (x[1].name, x[0], x[1].value), transformers))
     )
 
     pipeline = Pipeline(
         steps=[
+            *make_pipeline(*preprocessing).steps,
             ('preprocessor', preprocessor),
             *make_pipeline(*steps).steps
         ]
@@ -98,5 +100,5 @@ def pipeline_builder(
         n_jobs=-1,
         verbose=3,
         cv=cv_strategy,
-        refit='accuracy'
+        refit='f1'
     )
