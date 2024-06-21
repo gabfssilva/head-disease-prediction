@@ -6,7 +6,7 @@ def write_dataset_as_json_zip(self, context: dict) -> bool:
     buffer = io.StringIO()
     context['raw_dataset'].to_json(path_or_buf=buffer, orient='records')
 
-    path = '../resources/generated/raw_dataset.json.zip'
+    path = 'resources/generated/raw_dataset.json.zip'
     filename = 'raw_dataset.json'
     content = buffer.getvalue()
 

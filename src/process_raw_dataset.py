@@ -1,20 +1,22 @@
 import os.path
 import time
 
-from src.commands.handle_numerical_command import *
-from src.commands.load_raw_dataset_command import load_raw_dataset, load_raw_dataset_parquet
-from src.commands.merge_dataset_header_command import merge_dataset_header
-from src.commands.parse_header_description_command import parse_header_descriptions
-from src.commands.parse_header_positions_command import parse_header_positions
-from src.commands.remove_empty_columns_command import remove_empty_columns
-from src.commands.remove_nan_on_target_command import remove_nan_on_target
-from src.commands.set_binary_target_command import set_binary_target
-from src.commands.split_train_analysis_command import split_train_analysis
-from src.commands.split_train_test_command import split_train_test
-from src.commands.store_train_test_analysis_command import store_train_test_analysis
-from src.commands.unzip_raw_asc_file_command import unzip_raw_asc_file
-from src.commands.write_dataset_as_parquet_command import write_dataset_as_parquet
-from src.commands.write_headers_json_command import write_headers_json
+from commands.handle_numerical_command import *
+from commands.load_raw_dataset_command import load_raw_dataset, load_raw_dataset_parquet
+from commands.merge_dataset_header_command import merge_dataset_header
+from commands.parse_header_description_command import parse_header_descriptions
+from commands.parse_header_positions_command import parse_header_positions
+from commands.remove_empty_columns_command import remove_empty_columns
+from commands.remove_nan_on_target_command import remove_nan_on_target
+from commands.set_binary_target_command import set_binary_target
+from commands.split_train_analysis_command import split_train_analysis
+from commands.split_train_test_command import split_train_test
+from commands.store_train_test_analysis_command import store_train_test_analysis
+from commands.unzip_raw_asc_file_command import unzip_raw_asc_file
+from commands.write_dataset_as_parquet_command import write_dataset_as_parquet
+from commands.write_headers_json_command import write_headers_json
+from commands.set_types_command import set_types
+
 
 initial_commands = [
     unzip_raw_asc_file,
@@ -23,7 +25,7 @@ initial_commands = [
     merge_dataset_header,
     write_headers_json,
     load_raw_dataset,
-    write_dataset_as_parquet('../resources/generated/raw_dataset.parquet'),
+    write_dataset_as_parquet('resources/generated/raw_dataset.parquet'),
 ]
 
 try_to_load_commands = [
@@ -33,7 +35,7 @@ try_to_load_commands = [
     load_raw_dataset_parquet
 ]
 
-if os.path.exists('../resources/generated/raw_dataset.parquet'):
+if os.path.exists('resources/generated/raw_dataset.parquet'):
     init_commands = try_to_load_commands
 else:
     init_commands = initial_commands
@@ -41,7 +43,8 @@ else:
 commands = init_commands + [
     remove_nan_on_target,
     handle_numerical_categories,
-    remove_empty_columns,
+    remove_empty_columns,   
+    set_types,
     set_binary_target,
     split_train_test,
     split_train_analysis,

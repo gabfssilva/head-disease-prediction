@@ -5,7 +5,19 @@ import pyarrow.parquet as pq
 
 def write_dataset_as_parquet(filepath: str, dataset: str = 'raw_dataset') -> Callable[[dict], bool]:
     def with_context(context) -> bool:
-        table = pa.Table.from_pandas(context[dataset])
+        df = context[dataset]
+
+        # Get the data types of all columns
+        data_types = df.dtypes
+
+        # Count the occurrences of each data type
+        type_counts = data_types.value_counts()
+
+        # Print the occurrences of each data type
+        print("Occurrences of each data type:")
+        print(type_counts)
+
+        table = pa.Table.from_pandas(df)
         headers = context['headers']
 
         fields = []

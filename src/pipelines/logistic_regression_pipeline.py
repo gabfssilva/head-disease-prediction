@@ -4,8 +4,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-from src.pipelines.builder import pipeline_builder
-from src.util.scikitlearn_utils import numerical_transformer, categorical_transformer
+from pipelines.builder import pipeline_builder
+from util.scikitlearn_utils import numerical_transformer, categorical_transformer
 
 
 def logistic_regression() -> GridSearchCV:
@@ -28,6 +28,5 @@ def logistic_regression() -> GridSearchCV:
             'logisticregression__penalty': ['l2'],
             'logisticregression__max_iter': [1000, 2000],
             'logisticregression__C': [0.1, 1],
-        },
-        positive_class=1
+        }
     )

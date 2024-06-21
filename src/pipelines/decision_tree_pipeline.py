@@ -3,8 +3,8 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 
-from src.pipelines.builder import pipeline_builder
-from src.util.scikitlearn_utils import numerical_transformer, categorical_transformer
+from pipelines.builder import pipeline_builder
+from util.scikitlearn_utils import numerical_transformer, categorical_transformer
 
 
 def decision_tree() -> GridSearchCV:
@@ -23,6 +23,5 @@ def decision_tree() -> GridSearchCV:
             'decisiontreeclassifier__min_samples_leaf': [3, 10],
             # 'decisiontreeclassifier__max_features': ['sqrt', 'log2', 500],
             'decisiontreeclassifier__criterion': ['gini', 'entropy']
-        },
-        positive_class=1
+        }
     )

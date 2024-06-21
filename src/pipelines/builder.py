@@ -3,7 +3,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.metrics import make_scorer, precision_score, recall_score, f1_score
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
 
-from src.types.types import TransformerStep, Step
+from tps.types import TransformerStep, Step
 
 
 def pipeline_builder(
@@ -11,7 +11,7 @@ def pipeline_builder(
     transformers: list[TransformerStep],
     steps: list[Step],
     param_grid: dict,
-    positive_class: any
+    positive_class: any = 'True'
 ) -> GridSearchCV:
     """
     Constructs a highly opinionated machine learning pipeline for binary classification
@@ -97,7 +97,7 @@ def pipeline_builder(
             'recall': recall_scorer,
             'precision': precision_scorer
         },
-        n_jobs=-1,
+        n_jobs=4,
         verbose=3,
         cv=cv_strategy,
         refit='f1'

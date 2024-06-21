@@ -1,5 +1,7 @@
 import pandas as pd
 
+from pipelines.decision_tree_pipeline import *
+
 df = pd.read_parquet('../resources/processed/train.parquet')
 df_test = pd.read_parquet('../resources/processed/test.parquet')
 

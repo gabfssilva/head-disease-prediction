@@ -38,9 +38,9 @@ def question_plot_bar(
                 height=600,
             )
 
-            os.makedirs('../resources/generated/images', exist_ok=True)
+            os.makedirs('resources/generated/images', exist_ok=True)
             fig.write_image(
-                f'../resources/generated/images/{feature}.png',
+                f'resources/generated/images/{feature}.png',
                 scale=4
             )
 

@@ -1,4 +1,4 @@
-from src.commands.command import Command
+from commands.command import Command
 
 
 def remove_nan_on_target(context: dict) -> bool:

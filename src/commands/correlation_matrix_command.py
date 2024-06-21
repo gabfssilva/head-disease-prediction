@@ -1,4 +1,4 @@
-from src.commands.command import Command
+from commands.command import Command
 
 import plotly.express as px
 

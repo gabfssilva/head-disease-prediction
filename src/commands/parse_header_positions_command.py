@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 
 
 def parse_header_positions(context: dict) -> bool:
-    with open('../resources/headers.html', 'r') as file:
+    with open('resources/headers.html', 'r') as file:
         html_content = file.read()
 
     soup = BeautifulSoup(html_content, 'html.parser')

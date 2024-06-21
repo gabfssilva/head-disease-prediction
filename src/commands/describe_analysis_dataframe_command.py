@@ -1,4 +1,4 @@
-from src.commands.command import Command
+from commands.command import Command
 
 def describe(context: dict) -> bool:
     print("Statistical Summary:")
