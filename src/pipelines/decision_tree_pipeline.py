@@ -18,10 +18,10 @@ def decision_tree() -> GridSearchCV:
             DecisionTreeClassifier()
         ],
         param_grid={
-            'decisiontreeclassifier__max_depth': [50, 100, 200],
-            'decisiontreeclassifier__min_samples_split': [20, 50],
-            'decisiontreeclassifier__min_samples_leaf': [3, 10],
-            # 'decisiontreeclassifier__max_features': ['sqrt', 'log2', 500],
+            'decisiontreeclassifier__max_depth': [50, 150, 220, 300],
+            'decisiontreeclassifier__min_samples_split': [10, 20, 30],
+            'decisiontreeclassifier__min_samples_leaf': [3, 10, 20],
+            'decisiontreeclassifier__max_features': [20, 50, 100],
             'decisiontreeclassifier__criterion': ['gini', 'entropy']
         }
     )

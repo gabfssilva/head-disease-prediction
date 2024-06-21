@@ -97,7 +97,7 @@ def pipeline_builder(
             'recall': recall_scorer,
             'precision': precision_scorer
         },
-        n_jobs=4,
+        n_jobs=-1,
         verbose=3,
         cv=cv_strategy,
         refit='f1'

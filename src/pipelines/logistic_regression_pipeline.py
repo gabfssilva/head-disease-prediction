@@ -1,3 +1,4 @@
+from sklearn.decomposition import PCA
 from imblearn.under_sampling import RandomUnderSampler
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
@@ -13,7 +14,7 @@ def logistic_regression() -> GridSearchCV:
         preprocessing=[RandomUnderSampler(random_state=42)],
         transformers=[
             numerical_transformer([
-                SimpleImputer(strategy='most_frequent'),
+                SimpleImputer(strategy='mean'),
                 StandardScaler()
             ]),
             categorical_transformer([
@@ -26,7 +27,7 @@ def logistic_regression() -> GridSearchCV:
         ],
         param_grid={
             'logisticregression__penalty': ['l2'],
-            'logisticregression__max_iter': [1000, 2000],
-            'logisticregression__C': [0.1, 1],
+            'logisticregression__max_iter': [100, 250, 500, 1000, 1500, 2000],
+            'logisticregression__C': [0.01, 0.1, 1],
         }
     )

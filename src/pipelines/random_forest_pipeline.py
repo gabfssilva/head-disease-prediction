@@ -19,7 +19,7 @@ def random_forest() -> GridSearchCV:
         ],
         param_grid={
             'randomforestclassifier__n_estimators': [10, 15],
-            'randomforestclassifier__max_depth': [10, 20],
-            'randomforestclassifier__min_samples_split': [5, 7],
+            'randomforestclassifier__max_depth': [10, 20, 50, 100],
+            'randomforestclassifier__min_samples_split': [10, 15, 20],
         }
     )

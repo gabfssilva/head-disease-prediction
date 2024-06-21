@@ -1,5 +1,5 @@
 import pandas as pd
-from IPython import display
+from IPython.display import display
 from imblearn.pipeline import make_pipeline
 from sklearn.base import BaseEstimator
 from sklearn.metrics import confusion_matrix, classification_report
@@ -23,7 +23,7 @@ def categorical_transformer(steps: list[BaseEstimator]) -> TransformerStep:
 
 
 def evaluate_model(model, X_train, y_train, X_test, y_test):
-    class_names = {"0": "haven't suffered a heart attack", "1": "suffered a heart attack"}
+    class_names = {"False": "haven't suffered a heart attack", "True": "suffered a heart attack"}
 
     model.fit(X_train, y_train)
 
