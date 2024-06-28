@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 def parse_header_descriptions(context: dict) -> bool:
-    with open('resources/dataset header description.html', 'r', encoding='windows-1252') as file:
+    with open('../resources/dataset header description.html', 'r', encoding='windows-1252') as file:
         html_content = file.read()
 
     soup = BeautifulSoup(html_content, 'html.parser')

@@ -163,3 +163,5 @@ cython_debug/
 
 # To avoid commiting tons and tons of data, we shouldn't commit generated data
 resources/generated
+
+.vscode/

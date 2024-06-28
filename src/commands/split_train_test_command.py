@@ -3,8 +3,8 @@ from sklearn.model_selection import train_test_split
 
 def split_train_test(context: dict) -> bool:
     dataset = context['raw_dataset']
-    y = dataset['CVDINFR4']
-    X = dataset.drop('CVDINFR4', axis=1)
+    y = dataset['target']
+    X = dataset.drop('target', axis=1)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                         test_size=0.2,

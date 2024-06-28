@@ -1,0 +1,503 @@
+{
+  "_IMPRACE": {
+    "label": "Imputed race / ethnicity value",
+    "question": "Imputed race / ethnicity value  (This value is the reported race / ethnicity or an imputed race / ethnicity, if the respondent refused to give a race / ethnicity. The value of the imputed race / ethnicity will be the most common race / ethnicity response for that region of the state)",
+    "possible_answers": {
+      "1": "White, Non-Hispanic",
+      "2": "Black, Non-Hispanic",
+      "3": "Asian, Non-Hispanic",
+      "4": "American Indian / Alaskan Native, Non-Hispanic",
+      "5": "Hispanic",
+      "6": "Other race, Non-Hispanic"
+    },
+    "starts_at": 1471,
+    "ends_at": 1473,
+    "normalized_key": "imputed_raceethnicity_value"
+  },
+  "_RFHLTH": {
+    "label": "Adults with good or better health",
+    "question": "Adults with good or better health",
+    "possible_answers": {
+      "1": "Good",
+      "2": "Fair or Poor",
+      "9": "Don't know or missing"
+    },
+    "starts_at": 1899,
+    "ends_at": 1900,
+    "normalized_key": "adults_with_good_or_better_health"
+  },
+  "_PHYS14D": {
+    "label": "Computed Physical Health Status",
+    "question": "3 level not good physical health status",
+    "possible_answers": {
+      "1": "Zero days when physical health not good",
+      "2": "1-13 days when physical health not good",
+      "3": "14+ days when physical health not good",
+      "9": "Don't know / Refused / Missing"
+    },
+    "starts_at": 1900,
+    "ends_at": 1901,
+    "normalized_key": "computed_physical_health_status"
+  },
+  "_MENT14D": {
+    "label": "Computed Mental Health Status",
+    "question": "3 level not good mental health status",
+    "possible_answers": {
+      "1": "Zero days when mental health not good",
+      "2": "1-13 days when mental health not good",
+      "3": "14+ days when mental health not good",
+      "9": "Don't know / Refused / Missing"
+    },
+    "starts_at": 1901,
+    "ends_at": 1902,
+    "normalized_key": "computed_mental_health_status"
+  },
+  "_HLTHPLN": {
+    "label": "Have any health insurance",
+    "question": "Adults who had some form of health insurance",
+    "possible_answers": {
+      "1": "Have some form of insurance",
+      "2": "Do not have some form of health insurance",
+      "9": "Don't know, refused or missing insurance response"
+    },
+    "starts_at": 1902,
+    "ends_at": 1903,
+    "normalized_key": "have_any_health_insurance"
+  },
+  "_TOTINDA": {
+    "label": "Leisure Time Physical Activity Calculated Variable",
+    "question": "Adults who reported doing physical activity or exercise during the past 30 days other than their regular job",
+    "possible_answers": {
+      "1": "Had physical activity or exercise",
+      "2": "No physical activity or exercise in last 30 days",
+      "9": "Don't know / Refused / Missing"
+    },
+    "starts_at": 1904,
+    "ends_at": 1905,
+    "normalized_key": "leisure_time_physical_activity_calculated_variable"
+  },
+  "_EXTETH3": {
+    "label": "Adults aged 18+ that have had permanent teeth extracted",
+    "question": "Adults aged 18+ who have had permanent teeth extracted",
+    "possible_answers": {
+      "1": "Not at risk",
+      "2": "At risk",
+      "9": "Don't know / Not Sure Or Refused / Missing"
+    },
+    "starts_at": 1905,
+    "ends_at": 1906,
+    "normalized_key": "adults_aged_18_that_have_had_permanent_teeth_extracted"
+  },
+  "_ALTETH3": {
+    "label": "Adults aged 65+ who have had all their natural teeth extracted",
+    "question": "Adults aged 65+ who have had all their natural teeth extracted",
+    "possible_answers": {
+      "1": "No",
+      "2": "Yes",
+      "9": "Don't know / Not Sure Or Refused / Missing",
+      "BLANK": "Missing or Age < 65"
+    },
+    "starts_at": 1906,
+    "ends_at": 1907,
+    "normalized_key": "adults_aged_65_who_have_had_all_their_natural_teeth_extracted"
+  },
+  "_DENVST3": {
+    "label": "Adults that have visited a dentist, dental hygenist or dental clinic within the past year",
+    "question": "Adults who have visited a dentist, dental hygenist or dental clinic within the past year",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "9": "Don't know / Not Sure Or Refused / Missing",
+      "BLANK": "Missing"
+    },
+    "starts_at": 1907,
+    "ends_at": 1908,
+    "normalized_key": "adults_that_have_visited_a_dentist_dental_hygenist_or_dental_clinic_within_the_past_year"
+  },
+  "_ASTHMS1": {
+    "label": "Computed Asthma Status",
+    "question": "Computed asthma status",
+    "possible_answers": {
+      "1": "Current",
+      "2": "Former",
+      "3": "Never",
+      "9": "Don't know / Not Sure Or Refused / Missing"
+    },
+    "starts_at": 1911,
+    "ends_at": 1912,
+    "normalized_key": "computed_asthma_status"
+  },
+  "_DRDXAR2": {
+    "label": "Respondents diagnosed with arthritis",
+    "question": "Respondents who have had a doctor diagnose them as having some form of arthritis",
+    "possible_answers": {
+      "1": "Diagnosed with arthritis",
+      "2": "Not diagnosed with arthritis",
+      "BLANK": "Don't know / Not Sure / Refused / Missing"
+    },
+    "starts_at": 1912,
+    "ends_at": 1913,
+    "normalized_key": "respondents_diagnosed_with_arthritis"
+  },
+  "_SEX": {
+    "label": "Calculated sex variable",
+    "question": "Calculated sex variable",
+    "possible_answers": {
+      "1": "Male",
+      "2": "Female"
+    },
+    "starts_at": 1980,
+    "ends_at": 1981,
+    "normalized_key": "calculated_sex_variable"
+  },
+  "_AGE80": {
+    "label": "Imputed Age value collapsed above 80",
+    "question": "Imputed Age value collapsed above 80",
+    "possible_answers": {
+      "18 - 80": "18 to 80"
+    },
+    "starts_at": 1984,
+    "ends_at": 1986,
+    "normalized_key": "imputed_age_value_collapsed_above_80"
+  },
+  "_AGE_G": {
+    "label": "Imputed age in six groups",
+    "question": "Six-level imputed age category",
+    "possible_answers": {
+      "1": "18 to 24",
+      "2": "25 to 34",
+      "3": "35 to 44",
+      "4": "45 to 54",
+      "5": "55 to 64",
+      "6": "65 or older"
+    },
+    "starts_at": 1986,
+    "ends_at": 1987,
+    "normalized_key": "imputed_age_in_six_groups"
+  },
+  "_BMI5": {
+    "label": "Computed body mass index",
+    "question": "Body Mass Index (BMI)",
+    "possible_answers": {
+      "1 - 9999": "1 or greater",
+      "BLANK": "Don't know / Refused / Missing"
+    },
+    "starts_at": 1998,
+    "ends_at": 2002,
+    "normalized_key": "computed_body_mass_index"
+  },
+  "_BMI5CAT": {
+    "label": "Computed body mass index categories",
+    "question": "Four-categories of Body Mass Index (BMI)",
+    "possible_answers": {
+      "1": "Underweight",
+      "2": "Normal Weight",
+      "3": "Overweight",
+      "4": "Obese",
+      "BLANK": "Don't know / Refused / Missing"
+    },
+    "starts_at": 2002,
+    "ends_at": 2003,
+    "normalized_key": "computed_body_mass_index_categories"
+  },
+  "_SMOKER3": {
+    "label": "Computed Smoking Status",
+    "question": "Four-level smoker status",
+    "possible_answers": {
+      "1": "Current smoker - now smokes every day",
+      "2": "Current smoker - now smokes some days",
+      "3": "Former smoker",
+      "4": "Never smoked",
+      "9": "Don't know / Refused / Missing"
+    },
+    "starts_at": 2019,
+    "ends_at": 2020,
+    "normalized_key": "computed_smoking_status"
+  },
+  "_YRSSMOK": {
+    "label": "Number of years smoked cigarettes",
+    "question": "Number of years respondent smoked cigarettes",
+    "possible_answers": {
+      "1 - 100": "Years smoked cigarettes",
+      "BLANK": "Don't know / Refused / Missing"
+    },
+    "starts_at": 2022,
+    "ends_at": 2025,
+    "normalized_key": "number_of_years_smoked_cigarettes"
+  },
+  "_SMOKGRP": {
+    "label": "Smoking Group",
+    "question": "Smoking Group",
+    "possible_answers": {
+      "1": "Current smoker, 20+ Pack Years",
+      "2": "Former smoker, 20+ Pack Years, quit < 15 years",
+      "3": "All other current and former smokers",
+      "4": "Never smoker",
+      "BLANK": "Don't know / Refused / Missing"
+    },
+    "starts_at": 2036,
+    "ends_at": 2037,
+    "normalized_key": "smoking_group"
+  },
+  "_RFBING6": {
+    "label": "Binge Drinking Calculated Variable",
+    "question": "Binge drinkers (males having five or more drinks on one occasion, females having four or more drinks on one occasion)",
+    "possible_answers": {
+      "1": "No",
+      "2": "Yes",
+      "9": "Don't know / Refused / Missing"
+    },
+    "starts_at": 2042,
+    "ends_at": 2043,
+    "normalized_key": "binge_drinking_calculated_variable"
+  },
+  "_RFDRHV8": {
+    "label": "Heavy Alcohol Consumption  Calculated Variable",
+    "question": "Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)",
+    "possible_answers": {
+      "1": "No",
+      "2": "Yes",
+      "9": "Don't know / Refused / Missing"
+    },
+    "starts_at": 2048,
+    "ends_at": 2049,
+    "normalized_key": "heavy_alcohol_consumption__calculated_variable"
+  },
+  "_PNEUMO3": {
+    "label": "Pneumonia Vaccination Calculated Variable",
+    "question": "Adults aged 65+ who have ever had a pneumonia vaccination",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "9": "Don't know / Not Sure Or Refused / Missing",
+      "BLANK": "Age < 65"
+    },
+    "starts_at": 2050,
+    "ends_at": 2051,
+    "normalized_key": "pneumonia_vaccination_calculated_variable"
+  },
+  "_AIDTST4": {
+    "label": "Ever been tested for HIV calculated variable",
+    "question": "Adults who have ever been tested for HIV",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "9": "Don't know / Not Sure / Refused",
+      "BLANK": "Not asked or missing"
+    },
+    "starts_at": 2051,
+    "ends_at": 2052,
+    "normalized_key": "ever_been_tested_for_hiv_calculated_variable"
+  },
+  "CVDSTRK3": {
+    "label": "Ever Diagnosed with a Stroke",
+    "question": "(Ever told) (you had) a stroke.",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know/Not sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 120,
+    "ends_at": 121,
+    "normalized_key": "ever_diagnosed_with_a_stroke"
+  },
+  "ADDEPEV3": {
+    "label": "(Ever told) you had a depressive disorder",
+    "question": "(Ever told) (you had) a depressive disorder (including depression, major depression, dysthymia, or minor depression)?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know/Not sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 126,
+    "ends_at": 127,
+    "normalized_key": "ever_told_you_had_a_depressive_disorder"
+  },
+  "CHCKDNY2": {
+    "label": "Ever told you have kidney disease?",
+    "question": "Not including kidney stones, bladder infection or incontinence, were you ever told you had kidney disease?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know / Not sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 127,
+    "ends_at": 128,
+    "normalized_key": "ever_told_you_have_kidney_disease"
+  },
+  "DIABETE4": {
+    "label": "(Ever told) you had diabetes",
+    "question": "(Ever told) (you had) diabetes?  (If 'Yes' and respondent is female, ask 'Was this only when you were pregnant?'. If Respondent says pre-diabetes or borderline diabetes, use response code 4.)",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "Yes, but female told only during pregnancy",
+      "3": "No",
+      "4": "No, pre-diabetes or borderline diabetes",
+      "7": "Don't know/Not Sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 129,
+    "ends_at": 130,
+    "normalized_key": "ever_told_you_had_diabetes"
+  },
+  "DECIDE": {
+    "label": "Difficulty Concentrating or Remembering",
+    "question": "Because of a physical, mental, or emotional condition, do you have serious difficulty concentrating, remembering, or making decisions?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know/Not Sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 199,
+    "ends_at": 200,
+    "normalized_key": "difficulty_concentrating_or_remembering"
+  },
+  "DIFFWALK": {
+    "label": "Difficulty Walking or Climbing Stairs",
+    "question": "Do you have serious difficulty walking or climbing stairs?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know/Not Sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 200,
+    "ends_at": 201,
+    "normalized_key": "difficulty_walking_or_climbing_stairs"
+  },
+  "DIFFDRES": {
+    "label": "Difficulty Dressing or Bathing",
+    "question": "Do you have difficulty dressing or bathing?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know/Not Sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 201,
+    "ends_at": 202,
+    "normalized_key": "difficulty_dressing_or_bathing"
+  },
+  "DIFFALON": {
+    "label": "Difficulty Doing Errands Alone",
+    "question": "Because of a physical, mental, or emotional condition, do you have difficulty doing errands alone such as visiting a doctor's office or shopping?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know/Not Sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 202,
+    "ends_at": 203,
+    "normalized_key": "difficulty_doing_errands_alone"
+  },
+  "CNCRAGE": {
+    "label": "Age Told Had Cancer",
+    "question": "At what age were you told that you had cancer?  (If Response = 2 (Two) or 3 (Three or more), ask",
+    "possible_answers": {
+      "1 - 97": "Age in years (97=97 and older)",
+      "98": "Don't know/Not Sure",
+      "99": "Refused",
+      "BLANK": "Missing"
+    },
+    "starts_at": 311,
+    "ends_at": 313,
+    "normalized_key": "age_told_had_cancer"
+  },
+  "CNCRTYP2": {
+    "label": "Type of Cancer",
+    "question": "What kind of cancer is it?",
+    "possible_answers": {
+      "1": "Bladder",
+      "2": "Blood",
+      "3": "Bone",
+      "4": "Brain",
+      "5": "Breast",
+      "6": "Cervix/Cervical",
+      "7": "Colon",
+      "8": "Esophagus/Esophageal",
+      "9": "Gallbladder",
+      "10": "Kidney",
+      "11": "Larynx-trachea",
+      "12": "Leukemia",
+      "13": "Liver",
+      "14": "Lung",
+      "15": "Lymphoma",
+      "16": "Melanoma",
+      "17": "Mouth/tongue/lip",
+      "18": "Ovary/Ovarian",
+      "19": "Pancreas/Pancreatic",
+      "20": "Prostate",
+      "21": "Rectum/Rectal",
+      "22": "Skin (non-melanoma)",
+      "23": "Skin (don't know what kind)",
+      "24": "Soft tissue (muscle or fat)",
+      "25": "Stomach",
+      "26": "Testis/Testicular",
+      "27": "Throat - pharynx",
+      "28": "Thyroid",
+      "29": "Uterus/Uterine",
+      "30": "Other",
+      "77": "Don't know/Not sure",
+      "99": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 313,
+    "ends_at": 315,
+    "normalized_key": "type_of_cancer"
+  },
+  "CHCOCNC1": {
+    "label": "(Ever told) (you had)  melanoma or any other types of cancer?",
+    "question": "(Ever told) (you had) melanoma or any other types of cancer?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know / Not sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 124,
+    "ends_at": 125,
+    "normalized_key": "ever_told_you_had__melanoma_or_any_other_types_of_cancer"
+  },
+  "CVDINFR4": {
+    "label": "Ever Diagnosed with Heart Attack",
+    "question": "(Ever told) you had a heart attack, also called a myocardial infarction?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know/Not sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 118,
+    "ends_at": 119,
+    "normalized_key": "ever_diagnosed_with_heart_attack"
+  },
+  "CVDCRHD4": {
+    "label": "Ever Diagnosed with Angina or Coronary Heart Disease",
+    "question": "(Ever told) (you had) angina or coronary heart disease?",
+    "possible_answers": {
+      "1": "Yes",
+      "2": "No",
+      "7": "Don't know/Not sure",
+      "9": "Refused",
+      "BLANK": "Not asked or Missing"
+    },
+    "starts_at": 119,
+    "ends_at": 120,
+    "normalized_key": "ever_diagnosed_with_angina_or_coronary_heart_disease"
+  }
+}

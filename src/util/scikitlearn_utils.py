@@ -23,17 +23,23 @@ def categorical_transformer(steps: list[BaseEstimator]) -> TransformerStep:
 
 
 def evaluate_model(model, X_train, y_train, X_test, y_test):
-    class_names = {"False": "haven't suffered a heart attack", "True": "suffered a heart attack"}
-
     model.fit(X_train, y_train)
 
     if hasattr(model, 'best_params_'):
         print("Best Parameters:")
         print(model.best_params_)
 
-    y_pred = model.predict(X_test)
+    display("Eval on train set")
+    print_confusion_matrix(y_train, model.predict(X_train), model)
 
-    cm = confusion_matrix(y_test, y_pred)
+    display("Eval on test set")
+    print_confusion_matrix(y_test, model.predict(X_test), model)
+
+
+def print_confusion_matrix(y_true, y_pred, model):
+    class_names = {"False": "haven't suffered a heart attack", "True": "suffered a heart attack"}
+
+    cm = confusion_matrix(y_true, y_pred)
 
     cm_df = pd.DataFrame(cm, index=[f'Actual {class_names[cls]}' for cls in model.classes_],
                          columns=[f'Predicted {class_names[cls]}' for cls in model.classes_])
@@ -42,7 +48,7 @@ def evaluate_model(model, X_train, y_train, X_test, y_test):
     display(styled_cm)
 
     report = classification_report(
-        y_test,
+        y_true,
         y_pred,
         target_names=[class_names[cls] for cls in model.classes_],
         output_dict=True
