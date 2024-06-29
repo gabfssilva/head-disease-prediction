@@ -15,7 +15,7 @@ from commands.unzip_raw_asc_file_command import unzip_raw_asc_file
 from commands.write_dataset_as_parquet_command import write_dataset_as_parquet
 from commands.write_headers_json_command import write_headers_json
 from commands.set_types_command import set_types
-from src.commands.select_filtered_headers_command import select_filtered_columns
+from commands.select_filtered_headers_command import select_filtered_columns
 
 initial_commands = [
     unzip_raw_asc_file,
@@ -24,7 +24,7 @@ initial_commands = [
     merge_dataset_header,
     write_headers_json,
     load_raw_dataset,
-    write_dataset_as_parquet('../resources/processed/raw_dataset.parquet'),
+    write_dataset_as_parquet('resources/processed/raw_dataset.parquet'),
 ]
 
 try_to_load_commands = [
@@ -34,7 +34,7 @@ try_to_load_commands = [
     load_raw_dataset_parquet
 ]
 
-if os.path.exists('../resources/processed/raw_dataset.parquet'):
+if os.path.exists('resources/processed/raw_dataset.parquet'):
     init_commands = try_to_load_commands
 else:
     init_commands = initial_commands

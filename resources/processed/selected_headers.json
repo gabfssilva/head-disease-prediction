@@ -1,4 +1,78 @@
 {
+   "LSATISFY": {
+      "label": "Satisfaction with life",
+      "question": "In general, how satisfied are you with your life?",
+      "possible_answers": {
+        "1": "Very satisfied",
+        "2": "Satisfied",
+        "3": "Dissatisfied",
+        "4": "Very dissatisfied",
+        "7": "Don't know/Not sure",
+        "9": "Refused",
+        "BLANK": "Not asked or missing"
+      },
+      "starts_at": 361,
+      "ends_at": 362,
+      "normalized_key": "satisfaction_with_life"
+  },
+  "MAXDRNKS": {
+    "label": "Most drinks on single occasion past 30 days",
+    "question": "During the past 30 days, what is the largest number of drinks you had on any occasion?",
+    "possible_answers": {
+      "0": "",
+      "1 - 76": "Number of drinks",
+      "77": "Don't know/Not sure",
+      "99": "Refused",
+      "BLANK": "Not asked or missing"
+    },
+    "starts_at": 246,
+    "ends_at": 248,
+    "normalized_key": "most_drinks_on_single_occasion_past_30_days"
+  },
+  "CDHELP": {
+    "label": "When you need help with day-to-day activities are you able to get it",
+    "question": "When you need help with these day-to-day activities, how often are you able to get the help that you need?",
+    "possible_answers": {
+      "1": "Always",
+      "2": "Usually",
+      "3": "Sometimes",
+      "4": "Rarely",
+      "5": "Never",
+      "7": "Don't know/Not sure",
+      "9": "Refused",
+      "BLANK": "Not asked or missing"
+    },
+    "starts_at": 334,
+    "ends_at": 335,
+    "normalized_key": "when_you_need_help_with_daytoday_activities_are_you_able_to_get_it"
+  },
+  "LCSFIRST": {
+    "label": "How old when you first started smoking?",
+    "question": "How old were you when you first started to smoke cigarettes regularly",
+    "possible_answers": {
+      "1 - 100": "Age in Years",
+      "777": "Don't know/Not Sure",
+      "888": "Never smoked cigarettes regularly",
+      "999": "Refused",
+      "BLANK": "Not asked or missing"
+    },
+    "starts_at": 227,
+    "ends_at": 230,
+    "normalized_key": "how_old_when_you_first_started_smoking"
+  },
+  "LCSLAST": {
+    "label": "How old when you last smoked?",
+    "question": "How old were you when you last smoked cigarettes regularly?",
+    "possible_answers": {
+      "1 - 100": "Age in Years",
+      "777": "Don't know/Not Sure",
+      "999": "Refused",
+      "BLANK": "Not asked or missing"
+    },
+    "starts_at": 230,
+    "ends_at": 233,
+    "normalized_key": "how_old_when_you_last_smoked"
+  },
   "_IMPRACE": {
     "label": "Imputed race / ethnicity value",
     "question": "Imputed race / ethnicity value  (This value is the reported race / ethnicity or an imputed race / ethnicity, if the respondent refused to give a race / ethnicity. The value of the imputed race / ethnicity will be the most common race / ethnicity response for that region of the state)",

@@ -15,7 +15,7 @@ def store_train_test_analysis(context: dict) -> bool:
         y_df = pd.DataFrame(y, columns=['target'])
         df = pd.concat([X, y_df], axis=1)
         feature_names = X.columns.tolist() + ['target']
-        df[feature_names].to_parquet(f'../resources/processed/{name}', index=False)
+        df[feature_names].to_parquet(f'resources/processed/{name}', index=False)
 
     store(X_train, y_train, 'train.parquet')
     store(X_test, y_test, 'test.parquet')

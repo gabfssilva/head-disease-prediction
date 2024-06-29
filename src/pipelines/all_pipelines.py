@@ -1,7 +1,15 @@
 from sk.all import *
 
+all_scoring = [
+    f1, 
+    precision, 
+    accuracy, 
+    balanced_accuracy, 
+    recall
+]
+
 dt = lambda: pipeline_builder(
-    scoring=[precision, f1, accuracy, balanced_accuracy, recall],
+    scoring=all_scoring,
     steps=[
         random_under_sampler(random_state=42),
         column_transformers([
@@ -11,17 +19,17 @@ dt = lambda: pipeline_builder(
         decision_tree_classifier(random_state=42)
     ],
     param_grid={
-        'decisiontreeclassifier__max_depth': [500],
-        'decisiontreeclassifier__min_samples_split': [20],
-        'decisiontreeclassifier__min_samples_leaf': [10],
-        'decisiontreeclassifier__max_features': [25],
-        'decisiontreeclassifier__criterion': ['gini']
+        'decisiontreeclassifier__max_depth': [100, 250, 500, 1000],
+        'decisiontreeclassifier__min_samples_split': [3, 5, 10, 20],
+        'decisiontreeclassifier__min_samples_leaf': [3, 5, 10, 20],
+        'decisiontreeclassifier__max_features': [10, 25, 50],
+        'decisiontreeclassifier__criterion': ['gini', 'entropy']
     }
 )
 
 
 lr = lambda: pipeline_builder(
-    scoring=[precision, f1, accuracy, balanced_accuracy, recall],
+    scoring=all_scoring,
     steps=[
         random_under_sampler(random_state=42),
         column_transformers([
@@ -51,7 +59,7 @@ lr = lambda: pipeline_builder(
 )
 
 mlp = lambda: pipeline_builder(
-    scoring=[precision, f1, accuracy, balanced_accuracy, recall],
+    scoring=all_scoring,
     steps=[
         random_under_sampler(random_state=42),
         column_transformers([
@@ -71,24 +79,20 @@ mlp = lambda: pipeline_builder(
         'columntransformer__categorical__simpleimputer__strategy': ['constant'],
         'columntransformer__categorical__simpleimputer__fill_value': ['missing'],
         'columntransformer__categorical__simpleimputer__missing_values': ['<NA>'],
-
         'mlpclassifier__hidden_layer_sizes': [
-            # (50, 25, 10, 5,),
-            # (100, 25, 25, 5,),
-            (25, 15, 10),
+            (100, 50, 10),
         ],
-
-        'mlpclassifier__activation': ['logistic', 'relu'],
+        'mlpclassifier__activation': ['logistic'],
         'mlpclassifier__solver': ['adam'],
-        'mlpclassifier__alpha': [0.01],
-        'mlpclassifier__learning_rate': ['adaptive', 'constant', 'invscaling'],
-        'mlpclassifier__max_iter': [500],
+        'mlpclassifier__alpha': [0.1, 0.01],
+        'mlpclassifier__learning_rate': ['adaptive'],
+        'mlpclassifier__max_iter': [50, 100, 250],
     }
 )
 
 
 rf = lambda: pipeline_builder(
-    scoring=[precision, f1, accuracy, balanced_accuracy, recall],
+    scoring=all_scoring,
     steps=[
         random_under_sampler(random_state=42),
         column_transformers([
@@ -98,9 +102,11 @@ rf = lambda: pipeline_builder(
         random_forest_classifier(random_state=42)
     ],
     param_grid={
-        'randomforestclassifier__n_estimators': [100],
-        'randomforestclassifier__max_depth': [100],
-        'randomforestclassifier__min_samples_split': [15],
-        'randomforestclassifier__max_features': ["sqrt"]
+        'randomforestclassifier__n_estimators': [100, 250],
+        'randomforestclassifier__max_depth': [100, 250],
+        'randomforestclassifier__min_samples_split': [10, 20],
+        'randomforestclassifier__min_samples_leaf': [5, 10],
+        'randomforestclassifier__max_features': ["sqrt"],
+        'randomforestclassifier__criterion': ['gini', 'log_loss']
     }
 )

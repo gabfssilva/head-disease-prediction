@@ -60,7 +60,7 @@ def distribution_plot(estimator):
 
     for index, (name, scores) in enumerate(best_scores):
         fig.add_trace(go.Histogram(
-            x=scores, 
+            x=scores['validation'], 
             nbinsx=20, 
             name=f'{name} Distribution',
             marker_color='blue',
@@ -81,8 +81,8 @@ def distribution_plot(estimator):
     fig.show()
 
 def precision_recall_curve_plot(estimator):
-    recall = estimator.result_.best.scores['recall']
-    precision = estimator.result_.best.scores['precision']
+    recall = estimator.result_.best.scores['recall']['validation']
+    precision = estimator.result_.best.scores['precision']['validation']
 
     fig = go.Figure()
 
@@ -144,7 +144,7 @@ def performance_metrics_plot(
         'func': np.std
     }
 ):
-    best_metrics = estimator.result_.best.scores
+    best_metrics = estimator.result_.best.recalculated_scores
 
     data = {
         metric: {
