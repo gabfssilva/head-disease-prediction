@@ -5,6 +5,8 @@ from itertools import product
 from pprint import pprint
 from typing import Any, Dict, List, Tuple, Union
 
+from joblib import Parallel, delayed
+
 import atomics
 import numpy as np
 import pandas as pd
@@ -23,7 +25,7 @@ from sklearn.metrics import make_scorer, precision_score, recall_score, f1_score
 from sklearn.model_selection import StratifiedKFold, GridSearchCV, KFold, LearningCurveDisplay, ValidationCurveDisplay, \
     ParameterGrid
 from sklearn.neural_network import MLPClassifier
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import OrdinalEncoder, StandardScaler, OneHotEncoder
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
@@ -366,7 +368,7 @@ def random_forest_classifier(
     )
 
 
-def one_hot_encoding(
+def one_hot_encoder(
     categories="auto",
     drop=None,
     sparse_output=True,
@@ -387,6 +389,24 @@ def one_hot_encoding(
         feature_name_combiner=feature_name_combiner
     )
 
+def ordinal_encoder(
+    categories="auto",
+    dtype=np.float64,
+    handle_unknown="error",
+    unknown_value=None,
+    encoded_missing_value=np.nan,
+    min_frequency=None,
+    max_categories=None,
+) -> OrdinalEncoder:
+    return OrdinalEncoder(
+        categories=categories, 
+        dtype=dtype, 
+        handle_unknown=handle_unknown, 
+        unknown_value=unknown_value, 
+        encoded_missing_value=encoded_missing_value,
+        min_frequency=min_frequency,
+        max_categories=max_categories
+    )
 
 def knn_imputer(
     missing_values=np.nan,
@@ -551,7 +571,7 @@ def random_over_sampler(
         shrinkage=shrinkage
     )
 
-
+precision_no_avg = lambda pos_label: {'precision': make_scorer(precision_score, pos_label=pos_label, average=None)}
 precision = lambda pos_label: {'precision': make_scorer(precision_score, pos_label=pos_label)}
 accuracy = lambda *_: {'accuracy': make_scorer(accuracy_score)}
 balanced_accuracy = lambda *_: {'balanced_accuracy': make_scorer(balanced_accuracy_score)}
@@ -600,6 +620,40 @@ def categorical(
 ) -> TransformerStep:
     return make_pipeline(*transformers), ColumnType.categorical
 
+def build_scores(
+    positive_class,
+    scoring=[f1, accuracy, precision, recall, balanced_accuracy]
+): 
+    return reduce(
+        lambda f, s: {**f, **s}, 
+        map(lambda s: s(positive_class), scoring), 
+        {}
+    )
+
+def evalulate(
+    estimator: BaseEstimator,
+    X: pd.DataFrame,
+    y: pd.Series,
+    scoring=[f1, accuracy, precision, recall, balanced_accuracy],
+    n_jobs=1
+) -> pd.DataFrame:
+    scores = build_scores(estimator.positive_class, scoring)
+
+    def apply_scorer(score_name, scorer):
+        return score_name, scorer(estimator, X, y)
+
+    results = Parallel(n_jobs=n_jobs)(
+        delayed(apply_scorer)(score_name, scorer) for score_name, scorer in scores.items()
+    )
+
+    table = {
+        "train": estimator.result_.best.recalculated_scores,
+        "test": {
+            score_name: score_value for score_name, score_value in results
+        }
+    }
+
+    return pd.DataFrame(table).T
 
 def pipeline_builder(
     steps: list[Step],
@@ -609,15 +663,13 @@ def pipeline_builder(
     scoring=[f1, accuracy, precision, recall, balanced_accuracy],
     n_jobs=7,
 ) -> EnhancedGridSearchCV:
-    score_list = list(map(lambda s: s(positive_class), scoring))
-
     return EnhancedGridSearchCV(
         estimator=make_pipeline(*steps),
         param_grid=param_grid,
-        scoring=reduce(lambda f, s: {**f, **s}, score_list, {}),
-        n_jobs=n_jobs,
         cross_validation=cross_validation,
-        positive_class=positive_class
+        positive_class=positive_class,
+        scoring=build_scores(positive_class, scoring),
+        n_jobs=n_jobs,
     )
 
 
@@ -647,8 +699,8 @@ def results(estimator) -> pd.DataFrame:
 
     return df
 
-def display(estimator, X, y) -> Display:
-    return Display(estimator, X, y)
+# def display(estimator, X, y) -> Display:
+#     return Display(estimator, X, y)
 
 
 def _expression(predicate: bool, value: callable, otherwise: callable = lambda: None):

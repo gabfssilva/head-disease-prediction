@@ -122,16 +122,16 @@ class EnhancedGridSearchCV:
 
         parallel = Parallel(n_jobs=self.n_jobs, return_as='generator', verbose=0)
 
-        def process_fold(estimator, params, X, y, train_index, test_index, scoring):
+        def process_fold(params, train_index, test_index):
             X_train, X_test = X.iloc[train_index], X.iloc[test_index]
             y_train, y_test = y.iloc[train_index], y.iloc[test_index]
 
-            e = clone(estimator)
+            e = clone(self.estimator)
             e.set_params(**params)
             e.fit(X_train, y_train)
 
             validation_scores = {
-                score_name: scorer(e, X_test, y_test) for score_name, scorer in scoring.items()
+                score_name: scorer(e, X_test, y_test) for score_name, scorer in self.scoring.items()
             }
 
             # train_scores = {
@@ -162,16 +162,16 @@ class EnhancedGridSearchCV:
 
         for params in self.param_combinations_:
             for train_index, test_index in self.cross_validation.split(X, y):
-                task_list.append((self.estimator, params, X, y, train_index, test_index, self.scoring))
+                task_list.append((params, train_index, test_index))
 
         task_results = parallel(
-            delayed(process_fold)(estimator, params, X, y, train_index, test_index, scoring)
-            for estimator, params, X, y, train_index, test_index, scoring in task_list
+            delayed(process_fold)(params, train_index, test_index)
+            for params, train_index, test_index in task_list
         )
 
         params_result_dict = {str(params): [] for params in self.param_combinations_}
 
-        for (_, params, _, _, _, _, _), scores in zip(task_list, task_results):
+        for (params, _, _), scores in zip(task_list, task_results):
             combination_results = params_result_dict[str(params)]
             combination_results.append(scores)
 
@@ -213,7 +213,9 @@ class EnhancedGridSearchCV:
             best=BestResult(
                 metric=refit_score,
                 scores=parse_scores(best_fold_score),
-                recalculated_scores=reduce(lambda acc, name, f: { **acc, name: f(best_estimator, X, y) }, self.scoring.items(), {}),
+                recalculated_scores={
+                    score_name: scorer(best_estimator, X, y) for score_name, scorer in self.scoring.items()
+                },
                 avg_score=best_score,
                 params=best_params,
                 estimator=best_estimator,
